@@ -101,6 +101,6 @@ if __name__ == "__main__":
     app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
-        webhook_path=WEBHOOK_PATH,
+        url_path=WEBHOOK_PATH,
         webhook_url=WEBHOOK_URL + WEBHOOK_PATH
     )
