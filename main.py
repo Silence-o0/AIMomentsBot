@@ -87,6 +87,10 @@ async def handle_reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 if __name__ == "__main__":
+    WEBHOOK_PATH = "/webhook"
+    PORT = int(os.environ.get('PORT', 8443))
+    WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
+
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
@@ -94,4 +98,9 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.Chat(ADMIN_CHAT_ID) & filters.REPLY & filters.TEXT, handle_reply))
 
     print("Bot started.")
-    app.run_polling()
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        webhook_path=WEBHOOK_PATH,
+        webhook_url=WEBHOOK_URL + WEBHOOK_PATH
+    )
