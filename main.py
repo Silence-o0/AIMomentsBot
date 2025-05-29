@@ -2,9 +2,10 @@ import json
 import os
 from telegram import Update, Message, InputMediaPhoto
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, CommandHandler, filters
+import os
 
-BOT_TOKEN = "7796287588:AAFpnVj89YpuIKYysJkupSHj-3o81P4sYSE"
-ADMIN_CHAT_ID = -1002663187787
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+ADMIN_CHAT_ID = int(os.environ.get("ADMIN_CHAT_ID"))
 
 MAPPING_FILE = "mapping.json"
 
